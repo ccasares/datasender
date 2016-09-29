@@ -59,76 +59,76 @@ app.use(bodyParser.json());
 
 // REST stuff - BEGIN
 router.post(LAP, function(req, res) {
-  console.log("OFFTRACK: %j", req.body);
-/**
-  var input = req.body;
-  var data = {
-    deviceid: input.deviceId,
-    datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
-    datetimestring: input.dateTimeString,
-    racestatus: input.raceStatus,
-    raceid: input.raceId,
-    carid: input.carId,
-    carname: input.carName,
-    lap: input.lap,
-    laptime: input.lapTime
-  };
-
-  q.push({
-    service: LAP.replace(':demozone', req.params.demozone),
-    data: data
+  console.log("LAP: %j", req.body);
+  var payload = req.body;
+  _.each(payload, (element) => {
+    var input = element.payload.data;
+    var data = {
+      deviceid: input.data_deviceid,
+      datetime: dateFormat(new Date(input.data_eventtime / 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+      datetimestring: input.data_datetimestring,
+      racestatus: input.data_racestatus,
+      raceid: input.data_raceid,
+      carid: input.data_carid,
+      carname: input.data_carname,
+      lap: input.data_lap,
+      laptime: input.data_laptime
+    };
+    q.push({
+      service: LAP.replace(':demozone', req.params.demozone),
+      data: data
+    });
   });
-**/
   res.send("OK");
 });
 
 router.post(SPEED, function(req, res) {
-  var input = req.body;
-  console.log("OFFTRACK: %j", req.body);
-/**
-  var data = {
-    deviceid: input.deviceId,
-    datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
-    datetimestring: input.dateTimeString,
-    racestatus: input.raceStatus,
-    raceid: input.raceId,
-    carid: input.carId,
-    carname: input.carName,
-    speed: input.speed,
-    trackid: input.trackId,
-    lap: input.lap
-  };
-
-  q.push({
-    service: SPEED.replace(':demozone', req.params.demozone),
-    data: data
+  console.log("SPEED: %j", req.body);
+  var payload = req.body;
+  _.each(payload, (element) => {
+    var input = element.payload.data;
+    var data = {
+      deviceid: input.data_deviceid,
+      datetime: dateFormat(new Date(input.data_eventtime / 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+      datetimestring: input.data_datetimestring,
+      racestatus: input.data_racestatus,
+      raceid: input.data_raceid,
+      carid: input.data_carid,
+      carname: input.data_carname,
+      speed: input.data_speed,
+      trackid: input.data_trackid,
+      lap: input.data_lap
+    };
+    q.push({
+      service: SPEED.replace(':demozone', req.params.demozone),
+      data: data
+    });
   });
-**/
   res.send("OK");
 });
 
 router.post(OFFTRACK, function(req, res) {
-  var input = req.body;
   console.log("OFFTRACK: %j", req.body);
-/**
-  var data = {
-    deviceid: input.deviceId,
-    datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
-    datetimestring: input.dateTimeString,
-    racestatus: input.raceStatus,
-    raceid: input.raceId,
-    carid: input.carId,
-    carname: input.carName,
-    lap: input.lap,
-    message: input.message,
-    lastknowntrack: input.lastKnownTrack
-  };
-
-  q.push({
-    service: OFFTRACK.replace(':demozone', req.params.demozone),
-    data: data
+  var payload = req.body;
+  _.each(payload, (element) => {
+    var input = element.payload.data;
+    var data = {
+      deviceid: input.data_deviceid,
+      datetime: dateFormat(new Date(input.data_eventtime / 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+      datetimestring: input.data_datetimestring,
+      racestatus: input.data_racestatus,
+      raceid: input.data_raceid,
+      carid: input.data_carid,
+      carname: input.data_carname,
+      lap: input.data_lap,
+      message: input.data_message,
+      lastknowntrack: input.data_lastknowntrack
+    };
+    q.push({
+      service: OFFTRACK.replace(':demozone', req.params.demozone),
+      data: data
+    });
   });
-**/
   res.send("OK");
 });
 
