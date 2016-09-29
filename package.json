@@ -12,6 +12,7 @@
   "dependencies": {
     "block-queue": "0.0.2",
     "body-parser": "^1.15.2",
+    "dateformat": "^1.0.12",
     "express": "^4.14.0",
     "lodash": "^4.16.2",
     "restify": "^4.1.1"

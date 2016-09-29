@@ -8,6 +8,7 @@ var express = require('express')
   , util = require('util')
   , queue = require('block-queue')
   , _ = require('lodash')
+  , dateFormat = require('dateformat')
 ;
 
 //var DBHOST   = "https://129.152.129.94";
@@ -62,7 +63,7 @@ router.post(LAP, function(req, res) {
   var input = req.body;
   var data = {
     deviceid: input.deviceId,
-    datetime: new Date(input.dateTime * 1000).toUTCString(),
+    datetime: dateFormat(new Date(input.dateTime * 1000), 'dd-mmm-yy hh.MM.ss TT'),
     datetimestring: input.dateTimeString,
     racestatus: input.raceStatus,
     raceid: input.raceId,
@@ -125,7 +126,7 @@ function insert(URI, data) {
       var s2 = s1.substring(0,s1.indexOf(end)).replace('\n', ' '); // Get rid of any newline in the error message
       console.log("ERROR: %s", s2);
     } else {
-      console.log("OK: %d" + res.statusCode);
+      console.log("OK: %d", res.statusCode);
     }
   });
 }
