@@ -97,7 +97,7 @@ router.post(SPEED, function(req, res) {
 
   q.push({
     service: SPEED.replace(':demozone', req.params.demozone),
-    data: req.body
+    data: data
   });
 
   res.send("OK");
@@ -120,7 +120,7 @@ router.post(OFFTRACK, function(req, res) {
 
   q.push({
     service: OFFTRACK.replace(':demozone', req.params.demozone),
-    data: req.body
+    data: data
   });
   res.send("OK");
 });
