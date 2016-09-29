@@ -59,7 +59,7 @@ app.use(bodyParser.json());
 
 // REST stuff - BEGIN
 router.post(LAP, function(req, res) {
-  console.log("LAP: %j", req.body);
+//  console.log("LAP: %j", req.body);
   var payload = req.body;
   _.each(payload, (element) => {
     var input = element.payload.data;
@@ -83,7 +83,7 @@ router.post(LAP, function(req, res) {
 });
 
 router.post(SPEED, function(req, res) {
-  console.log("SPEED: %j", req.body);
+//  console.log("SPEED: %j", req.body);
   var payload = req.body;
   _.each(payload, (element) => {
     var input = element.payload.data;
@@ -108,7 +108,7 @@ router.post(SPEED, function(req, res) {
 });
 
 router.post(OFFTRACK, function(req, res) {
-  console.log("OFFTRACK: %j", req.body);
+//  console.log("OFFTRACK: %j", req.body);
   var payload = req.body;
   _.each(payload, (element) => {
     var input = element.payload.data;
