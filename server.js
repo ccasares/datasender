@@ -11,11 +11,11 @@ var express = require('express')
 ;
 
 //var DBHOST   = "https://129.152.129.94";
-var DBHOST   = "https://SOADB";
-var SERVICE  = "/apex/pdb1/anki/event";
-var LAP      = "/lap/:demozone";
-var SPEED    = "/speed/:demozone";
-var OFFTRACK = "/offtrack/:demozone";
+const DBHOST   = "https://SOADB";
+const SERVICE  = "/apex/pdb1/anki/event";
+const LAP      = "/lap/:demozone";
+const SPEED    = "/speed/:demozone";
+const OFFTRACK = "/offtrack/:demozone";
 
 // Instantiate classes & servers
 var app    = express()
@@ -51,8 +51,8 @@ process.on('SIGINT', function() {
 // Main handlers registration - END
 
 // REST engine initial setup
-var PORT = 9998;
-var restURI = '/event';
+const PORT = 9998;
+const restURI = '/event';
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -100,24 +100,27 @@ app.use(restURI, router);
 
 // Start QUEUE
 q = queue(queueConcurrency, function(task, done) {
+  console.log("Queueing call to %s with data: %j", DBHOST + SERVICE + task.service, task.data);
   insert(DBHOST + SERVICE + task.service, task.data);
   done(); // Let queue handle next task
 });
 
-server.listen(PORT, function() {
-  _.each(router.stack, function(r) {
+server.listen(PORT, () =>) {
+  _.each(router.stack, (r) => {
     // We take just the first element in router.stack.route.methods[] as we assume one HTTP VERB at most per URI
     console.log("'" + _.keys(r.route.methods)[0].toUpperCase() + "' method available at https://localhost:" + PORT + restURI + r.route.path);
   });
 });
 
 function insert(URI, data) {
-  dbClient.post(URI, data, function(err, req, res, data) {
+  dbClient.post(URI, data, (err, req, res, data) => {
     if (err) {
+      // Error comes as a HTML page.I try to remove all HTML garbage and keep just the error message
+      // Tried to use a regexp expression but didn't succeed :-(
       var start = '<span class="reason">';
       var end = '</span>';
       var s1 = err.message.substring(err.message.indexOf(start) + start.length);
-      var s2 = s1.substring(0,s1.indexOf(end)).replace('\n', ' ');
+      var s2 = s1.substring(0,s1.indexOf(end)).replace('\n', ' '); // Get rid of any newline in the error message
       console.log("ERROR: %s", s2);
     } else {
       console.log("OK: %d" + res.statusCode);
