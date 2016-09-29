@@ -105,7 +105,7 @@ q = queue(queueConcurrency, function(task, done) {
   done(); // Let queue handle next task
 });
 
-server.listen(PORT, () =>) {
+server.listen(PORT, () => {
   _.each(router.stack, (r) => {
     // We take just the first element in router.stack.route.methods[] as we assume one HTTP VERB at most per URI
     console.log("'" + _.keys(r.route.methods)[0].toUpperCase() + "' method available at https://localhost:" + PORT + restURI + r.route.path);
