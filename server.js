@@ -65,7 +65,7 @@ router.post(LAP, function(req, res) {
     var input = element.payload.data;
     var data = {
       deviceid: input.data_deviceid,
-      datetime: dateFormat(new Date(input.data_eventtime / 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+      datetime: dateFormat(new Date(input.data_eventtime / 1000000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
       datetimestring: input.data_datetimestring,
       racestatus: input.data_racestatus,
       raceid: input.data_raceid,
@@ -89,7 +89,7 @@ router.post(SPEED, function(req, res) {
     var input = element.payload.data;
     var data = {
       deviceid: input.data_deviceid,
-      datetime: dateFormat(new Date(input.data_eventtime / 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+      datetime: dateFormat(new Date(input.data_eventtime / 1000000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
       datetimestring: input.data_datetimestring,
       racestatus: input.data_racestatus,
       raceid: input.data_raceid,
@@ -114,7 +114,7 @@ router.post(OFFTRACK, function(req, res) {
     var input = element.payload.data;
     var data = {
       deviceid: input.data_deviceid,
-      datetime: dateFormat(new Date(input.data_eventtime / 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+      datetime: dateFormat(new Date(input.data_eventtime / 1000000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
       datetimestring: input.data_datetimestring,
       racestatus: input.data_racestatus,
       raceid: input.data_raceid,
