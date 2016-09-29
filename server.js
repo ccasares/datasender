@@ -59,6 +59,8 @@ app.use(bodyParser.json());
 
 // REST stuff - BEGIN
 router.post(LAP, function(req, res) {
+  console.log("OFFTRACK: %j", req.body);
+/**
   var input = req.body;
   var data = {
     deviceid: input.deviceId,
@@ -76,12 +78,14 @@ router.post(LAP, function(req, res) {
     service: LAP.replace(':demozone', req.params.demozone),
     data: data
   });
-
+**/
   res.send("OK");
 });
 
 router.post(SPEED, function(req, res) {
   var input = req.body;
+  console.log("OFFTRACK: %j", req.body);
+/**
   var data = {
     deviceid: input.deviceId,
     datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
@@ -99,12 +103,14 @@ router.post(SPEED, function(req, res) {
     service: SPEED.replace(':demozone', req.params.demozone),
     data: data
   });
-
+**/
   res.send("OK");
 });
 
 router.post(OFFTRACK, function(req, res) {
   var input = req.body;
+  console.log("OFFTRACK: %j", req.body);
+/**
   var data = {
     deviceid: input.deviceId,
     datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
@@ -122,6 +128,7 @@ router.post(OFFTRACK, function(req, res) {
     service: OFFTRACK.replace(':demozone', req.params.demozone),
     data: data
   });
+**/
   res.send("OK");
 });
 
