@@ -59,16 +59,17 @@ app.use(bodyParser.json());
 // REST stuff - BEGIN
 router.post(LAP, function(req, res) {
 
+  var input = req.body;
   var data = {
-    deviceid: 'mydeviceid',
-    datetime: '19-JAN-16 12.01.02',
-    datetimestring: 'hola mundo',
-    racestatus: 'RACING',
-    raceid: '21',
-    carid: 'EEE',
-    carname: 'Ground Shock',
-    lap: '2',
-    laptime: 333
+    deviceid: input.deviceId,
+    datetime: new Date(input.dateTime * 1000),
+    datetimestring: input.dateTimeString,
+    racestatus: input.raceStatus,
+    raceid: input.raceId,
+    carid: input.carId,
+    carname: input.carName,
+    lap: input.lap,
+    laptime: input.lapTime
   };
 
   q.push({
