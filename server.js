@@ -63,7 +63,7 @@ router.post(LAP, function(req, res) {
   var input = req.body;
   var data = {
     deviceid: input.deviceId,
-    datetime: dateFormat(new Date(input.dateTime * 1000), 'dd-mmm-yy hh.MM.ss TT'),
+    datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
     datetimestring: input.dateTimeString,
     racestatus: input.raceStatus,
     raceid: input.raceId,
