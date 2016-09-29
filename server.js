@@ -59,7 +59,6 @@ app.use(bodyParser.json());
 
 // REST stuff - BEGIN
 router.post(LAP, function(req, res) {
-
   var input = req.body;
   var data = {
     deviceid: input.deviceId,
@@ -82,14 +81,43 @@ router.post(LAP, function(req, res) {
 });
 
 router.post(SPEED, function(req, res) {
+  var input = req.body;
+  var data = {
+    deviceid: input.deviceId,
+    datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+    datetimestring: input.dateTimeString,
+    racestatus: input.raceStatus,
+    raceid: input.raceId,
+    carid: input.carId,
+    carname: input.carName,
+    speed: input.speed,
+    trackid: input.trackId,
+    lap: input.lap
+  };
+
   q.push({
     service: SPEED.replace(':demozone', req.params.demozone),
     data: req.body
   });
+
   res.send("OK");
 });
 
 router.post(OFFTRACK, function(req, res) {
+  var input = req.body;
+  var data = {
+    deviceid: input.deviceId,
+    datetime: dateFormat(new Date(input.dateTime * 1000), 'GMT:dd-mmm-yy hh.MM.ss TT'),
+    datetimestring: input.dateTimeString,
+    racestatus: input.raceStatus,
+    raceid: input.raceId,
+    carid: input.carId,
+    carname: input.carName,
+    lap: input.lap,
+    message: input.message,
+    lastknowntrack: input.lastKnownTrack
+  };
+
   q.push({
     service: OFFTRACK.replace(':demozone', req.params.demozone),
     data: req.body
