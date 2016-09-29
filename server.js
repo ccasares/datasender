@@ -151,7 +151,6 @@ server.listen(PORT, () => {
 
 function insert(URI, data) {
   dbClient.post(URI, data, (err, req, res, data) => {
-    console.log("done");
     if (err) {
       // Error comes as a HTML page.I try to remove all HTML garbage and keep just the error message
       // Tried to use a regexp expression but didn't succeed :-(
