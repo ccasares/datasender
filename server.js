@@ -11,7 +11,7 @@ var express = require('express')
 ;
 
 //var DBHOST   = "https://129.152.129.94";
-const DBHOST   = "https://SOADB";
+const DBHOST   = "https://ANKIDB";
 const SERVICE  = "/apex/pdb1/anki/event";
 const LAP      = "/lap/:demozone";
 const SPEED    = "/speed/:demozone";
@@ -114,6 +114,7 @@ server.listen(PORT, () => {
 
 function insert(URI, data) {
   dbClient.post(URI, data, (err, req, res, data) => {
+    console.log("done");
     if (err) {
       // Error comes as a HTML page.I try to remove all HTML garbage and keep just the error message
       // Tried to use a regexp expression but didn't succeed :-(
