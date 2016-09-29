@@ -137,7 +137,7 @@ app.use(restURI, router);
 
 // Start QUEUE
 q = queue(queueConcurrency, function(task, done) {
-  console.log("Queueing call to %s with data: %j", DBHOST + SERVICE + task.service, task.data);
+//  console.log("Queueing call to %s with data: %j", DBHOST + SERVICE + task.service, task.data);
   insert(DBHOST + SERVICE + task.service, task.data);
   done(); // Let queue handle next task
 });
@@ -160,8 +160,9 @@ function insert(URI, data) {
       var s1 = err.message.substring(err.message.indexOf(start) + start.length);
       var s2 = s1.substring(0,s1.indexOf(end)).replace('\n', ' '); // Get rid of any newline in the error message
       console.log("ERROR: %s", s2);
+      console.log("DATA: %j", data);
     } else {
-      console.log("OK: %d", res.statusCode);
+//      console.log("OK: %d", res.statusCode);
     }
   });
 }
